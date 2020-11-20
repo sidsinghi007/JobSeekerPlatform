@@ -1,0 +1,72 @@
+.hhh{
+    background-color: #4CAF50;
+    color:black;
+    margin-left: 23%;
+    width: 100px;
+    margin-top: 10%; 
+    text-align: center;
+    margin-bottom: 5%;
+    font-size: 15px;
+    font-family: sans-serif;
+
+}
+
+a{
+    text-decoration: none;
+    display:inline-block;
+    padding: 8px 16px;
+}
+
+.hero{
+    background-color: #E59866 ;
+    color:black;
+    margin-left: 0%;
+    margin-top: 10%; 
+    width: 100px;  
+    text-align: center; 
+    font-size: 15px;
+    font-family: sans-serif;
+}
+#imgg{
+    margin-left: 30%;
+}
+
+#recruit{
+    margin-top: 7%;
+    margin-left: 31%;
+    background-color: bisque;
+    width: 500px;
+    border-radius: 10px;
+}
+
+#welcome{
+    padding-top: 15px;
+    margin-left: 32%;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 700;
+}
+#contactinfo{
+    margin-left: 42%;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 650;
+    
+}
+#em{
+    margin-left: 32%;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 650;
+}
+#contno{
+    margin-left: 32%;
+    padding-bottom: 50px;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 650;
+}
+
+body{
+    background-color:#E59866;
+}

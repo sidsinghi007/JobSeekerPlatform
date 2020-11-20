@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>WELCOME</title>
+    <link rel="stylesheet" href="mystyle3.css">  
+</head>
+<body>
+    
+    <div id="div1">
+        
+        <!--Login and Sign Up button-->
+        <button id='loginb' onclick="createLogin()" disabled>LOGIN</button>
+        <button id='signupb' onclick="createSignup()">SIGNUP</button><br>
+        <div id="div2">
+            <div id="div3">
+                <form name="form1" method="POST" action="authenticate.php">
+                    <!--Select role-->
+                    <select class="Sselect" name="opt" required>
+                        <option value="" disabled selected>Choose one</option>
+                        <option value="applicant">APPLICANT</option>
+                        <option value="recruiter">RECRUITER</option>
+                    </select><br>
+                    <label id="Lemail">EMAIL</label><br>
+                    <input type="email" id="Iemail" name="EMAIL" required><br>
+                    <label id="Lpass">PASSWORD</label><br>
+                    <input type="password" id="Ipassword" name="PASSWORD" required><br>
+                    <input type="submit" id="Bsubmit" name="SUBMITL">
+                </form>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+
+        function checkAvail()
+        {
+            var username=$('#Iemail').val();
+            var also=$("#selectid").val();
+            if(also=="recruiter"||also=="applicant"){
+            jQuery.ajax({
+                url: "checkphp.php",
+                data: {username:username,selectid:also},//'username='+$("#Iemail").val(),
+                type: "POST",
+                success:function(data)
+                {
+                    alert(data);
+                    if(data=="Already Exists")
+                    {
+                        $("#Iemail").val("");
+                    }
+                },error:function(){}
+            });
+        }
+        else
+        {
+            alert("choose an option");
+            $("#Iemail").val("");
+        }
+    }
+
+        //new fuction
+        function choices(period)
+        {
+            if(period=="applicant")
+            {
+                document.getElementById("Lusername").innerHTML="NAME";
+                document.getElementById("Limage").innerHTML="IMAGE";
+            }
+            else if(period=="recruiter")
+            {
+                document.getElementById("Lusername").innerHTML="COMPANY NAME";
+                document.getElementById("Limage").innerHTML="COMPANY LOGO";
+            }
+        }
+
+        //username validation
+        function ValidateUname(un)
+        {
+            var uformat=/^[a-zA-Z ]+$/;
+            
+            if(un.value.length>0&&un.value.match(uformat))
+            {
+                return true;
+            }
+            else{
+                alert("enter correct username")
+                return false;
+            }
+        }
+
+        //validate email
+        function ValidateEmail(inputtext)
+        {
+            var mailformat= /^[a-zA-Z0-9.!#$%&'*+/=?^_'{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            if(inputtext.value.match(mailformat))
+            {
+                return true;
+            }
+            else
+            {
+                alert("no");
+                return false;
+            }
+
+        }
+
+        //validate contact
+        function ValidateContact(icont)
+        {
+            var contreg=/^[0-9]+$/;
+            if(icont.value.length==10&&icont.value.match(contreg))
+            {
+                return true;
+            }
+            else
+            {
+                alert("enter correct contact number");
+                return false;
+            }
+        }
+
+        //validate image
+        function Filevalidation()
+        {
+            const fi=document.getElementById("Iimage");
+            if(fi.files.length>0)
+            {
+                for(const i=0;i<=fi.files.length-1;i++)
+                {
+                    const fsize=fi.files.item(i).size;
+                    const file=Math.round((fsize/1024));
+                    if(file>=50)
+                    {
+                        alert("too big");
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }
+            }
+            else{
+                alert("chose file");
+                return false;
+            }
+        }
+
+        //validate password
+        function ValidatePassword(pass1,pass2)
+        {
+            if(pass1.value=="")
+            {
+                alert("enter password");
+                return false;
+            }
+            if(pass1.value.length<8)
+            {
+                alert("password length should be greater than 8");
+                return false;
+            }
+            if(pass2.value=="")
+            {
+                alert("enter conformation password");
+                return false;
+            }
+            if(pass1.value==pass2.value)
+            {
+                return true;
+            }
+            else{
+                alert("password and confirm password don't match");
+                return false;
+            }
+        }
+
+        //signup form validation
+        function vall(iemail,iusername,icontact,ipassword,icpassword)
+        {
+            var alp1=ValidateEmail(iemail);
+            var alp2=Filevalidation();
+            var alp3=ValidateUname(iusername);
+            var alp4=ValidateContact(icontact);
+            var alp5=ValidatePassword(ipassword,icpassword);
+            if(alp1==true&&alp2==true&&alp3==true&&alp4==true&&alp5==true)
+            {
+                var ele= document.getElementById('Ccheck');
+                ele.parentNode.removeChild(ele);
+                var ele1=document.getElementById('Pvalidate');
+                ele1.parentNode.removeChild(ele1);
+                //create submit button
+                var sub=document.createElement("input");
+                sub.setAttribute("type","submit");
+                sub.setAttribute("id","Bsubmit");
+                sub.setAttribute("name","SUBMITL");
+
+                document.getElementById("form11").appendChild(sub);
+            }
+            else
+            {
+                document.getElementById("Ccheck").checked=false;
+            }
+        }
+
+        function createLogin()
+        {
+            //button control
+            document.getElementById('signupb').disabled=false;
+            document.getElementById('loginb').disabled=true;
+
+            //remove existing elements inside div2
+            var ele= document.getElementById('div3');
+            ele.parentNode.removeChild(ele);
+            
+            //div3 tag for form
+            var div3=document.createElement("div");
+            div3.setAttribute("id","div3");
+            
+            //create form
+            var form1=document.createElement("form");
+            form1.setAttribute("method","POST");
+            form1.setAttribute("action","authenticate.php");
+            form1.setAttribute("id","form11");
+
+            //create select element
+            var sel=document.createElement("select");
+            sel.setAttribute("class","Sselect");
+            sel.setAttribute("name","opt");
+            sel.required=true;
+
+            var option1=document.createElement("option");
+            option1.setAttribute("value","");
+            option1.selected=true;
+            option1.disabled=true;
+            option1.textContent="Choose one";
+
+            var option2=document.createElement("option");
+            option2.setAttribute("value","applicant");
+            option2.textContent="APPLICANT";
+
+            var option3=document.createElement("option");
+            option3.setAttribute("value","recruiter");
+            option3.textContent="RECRUITER";
+
+            sel.add(option1);
+            sel.add(option2);
+            sel.add(option3);
+
+            //create email section
+            var Lemail=document.createElement('label');
+            Lemail.setAttribute("id","Lemail");
+            Lemail.textContent="EMAIL";
+
+            var Iemail=document.createElement('input');
+            Iemail.setAttribute("type","email");
+            Iemail.setAttribute("id","Iemail")
+            Iemail.setAttribute("name","EMAIL");
+            Iemail.required=true;
+
+            //create password section
+            var Lpass=document.createElement('label');
+            Lpass.setAttribute("id","Lpass");
+            Lpass.textContent="PASSWORD";
+
+            var Ipassword=document.createElement('input');
+            Ipassword.setAttribute("type","password");
+            Ipassword.setAttribute("id","Ipassword");
+            Ipassword.setAttribute("name","PASSWORD");
+            Ipassword.required=true;
+            var br=document.createElement("br");
+            
+            //create submit button
+            var sub=document.createElement("input");
+            sub.setAttribute("type","submit");
+            sub.setAttribute("id","Bsubmit");
+            sub.setAttribute("name","SUBMITL");
+
+            form1.appendChild(sel);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Lemail);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Iemail);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Lpass);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Ipassword);
+            //form1.appendChild(br.cloneNode());
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(sub);
+            
+            form1.appendChild(br.cloneNode());
+            div3.appendChild(form1);
+            
+            document.getElementById("div2").appendChild(div3);
+
+        }
+
+        function createSignup()
+        {
+            //button control
+            document.getElementById('signupb').disabled=true;
+            document.getElementById('loginb').disabled=false;
+            
+            //remove existing elements inside div2
+            var ele= document.getElementById('div3');
+            ele.parentNode.removeChild(ele);
+
+            //div3 tag for form
+            var div3=document.createElement("div");
+            div3.setAttribute("id","div3");
+            
+            //create form
+            var form1=document.createElement("form");
+            form1.setAttribute("method","POST");
+            form1.setAttribute("action","signupauth.php");
+            form1.setAttribute("id","form11");
+            form1.setAttribute("enctype","multipart/form-data");
+
+            //create select element
+            var sel=document.createElement("select");
+            sel.setAttribute("class","Sselect");
+            sel.setAttribute("name","opt");
+            sel.setAttribute("id","selectid");
+            sel.setAttribute("onchange","choices(this.value)");
+            sel.required=true;
+
+            var option1=document.createElement("option");
+            option1.setAttribute("value","");
+            option1.selected=true;
+            option1.disabled=true;
+            option1.textContent="Choose one";
+
+            var option2=document.createElement("option");
+            option2.setAttribute("value","applicant");
+            option2.textContent="APPLICANT";
+
+            var option3=document.createElement("option");
+            option3.setAttribute("value","recruiter");
+            option3.textContent="RECRUITER";
+
+            sel.add(option1);
+            sel.add(option2);
+            sel.add(option3);
+
+            //create username section
+            var Lusername=document.createElement('label');
+            Lusername.setAttribute("id","Lusername");
+            Lusername.textContent="NAME";
+
+
+            var Iusername=document.createElement('input');
+            Iusername.setAttribute("type","text");
+            Iusername.setAttribute("id","Iusername")
+            Iusername.setAttribute("name","USERNAME");
+            Iusername.required=true;
+
+            //create email section
+            var Lemail=document.createElement('label');
+            Lemail.setAttribute("id","Lemail");
+            Lemail.textContent="EMAIL";
+
+
+            var Iemail=document.createElement('input');
+            Iemail.setAttribute("type","email");
+            Iemail.setAttribute("id","Iemail")
+            Iemail.setAttribute("name","EMAIL");
+            Iemail.setAttribute("onBlur","checkAvail()");
+            //Iemail.setAttribute("value","asdasadsf");            
+            Iemail.required=true;
+
+            //contact element
+            var Lcontact=document.createElement('label');
+            Lcontact.setAttribute("id","Lcontact");
+            Lcontact.textContent="Contact Number";
+
+            var Icontact=document.createElement('input');
+            Icontact.setAttribute("type","text");
+            Icontact.setAttribute("id","Icontact");
+            Icontact.setAttribute("name","CONTACT");
+            //Icontact.setAttribute("size","10");
+            Icontact.required=true;
+
+            //image section
+            var Limage=document.createElement('label');
+            Limage.setAttribute("id","Limage");
+            Limage.textContent="IMAGE";
+
+            var Iimage=document.createElement('input');
+            Iimage.setAttribute("type","file");
+            Iimage.setAttribute("id","Iimage");
+            Iimage.setAttribute("name","IMAGES");
+            Iimage.required=true;
+
+            //create password section
+            var Lpass=document.createElement('label');
+            Lpass.setAttribute("id","Lpass");
+            Lpass.textContent="PASSWORD";
+
+            var Ipassword=document.createElement('input');
+            Ipassword.setAttribute("type","password");
+            Ipassword.setAttribute("id","Ipassword");
+            Ipassword.setAttribute("name","PASSWORD");
+            Ipassword.setAttribute("minlength","8");
+            Ipassword.required=true;
+
+            //create confirm password
+            var Lcpass=document.createElement('label');
+            Lcpass.setAttribute("id","Lcpass");
+            Lcpass.textContent="CONFIRM PASSWORD";
+
+            var Icpassword=document.createElement('input');
+            Icpassword.setAttribute("type","password");
+            Icpassword.setAttribute("id","Icpassword");
+            Icpassword.setAttribute("name","CPASSWORD");
+            Icpassword.setAttribute("minlength","8");
+            Icpassword.required=true;
+            
+            //checkbox element
+            var Ccheck=document.createElement("input");
+            Ccheck.setAttribute("type","checkbox");
+            Ccheck.setAttribute("id","Ccheck");
+            Ccheck.setAttribute("name","CCHECK");
+            Ccheck.setAttribute("onclick","vall(Iemail,Iusername,Icontact,Ipassword,Icpassword)");
+            
+            var Pvalidate=document.createElement("sup");
+            Pvalidate.setAttribute("id","Pvalidate");
+            Pvalidate.textContent="Validate info";
+
+            //break element
+            var br=document.createElement("br");
+
+            form1.appendChild(sel);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Lusername);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Iusername);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Lemail);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Iemail);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Lcontact);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Icontact);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Limage);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Iimage);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Lpass);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Ipassword);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Lcpass);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Icpassword);
+            form1.appendChild(br.cloneNode());
+            form1.appendChild(Ccheck);
+            form1.appendChild(Pvalidate);
+            
+            form1.appendChild(br.cloneNode());
+            div3.appendChild(form1);
+            
+            document.getElementById("div2").appendChild(div3);
+        }
+    </script>
+</body>
+</html>
