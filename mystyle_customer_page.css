@@ -1,0 +1,65 @@
+#bigg{
+    background-color: #5CDB95;
+}
+#bigdiv{
+    background-color:#41B3A3;
+    margin-left: 23%;
+    border-radius: 4%;        
+    width: 650px;
+    margin-top: 5%;
+    padding-bottom: 3%;
+}
+#imdiv{
+    margin-left: 35%;
+    padding-top: 7%;
+    padding-bottom: 3%;
+    
+}
+#inf{
+    margin-left: 0%;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+
+}
+#sk{
+    color: #4056a1;
+    font-weight: 900;
+}
+#skkk{
+    margin-top: 1%;
+    margin-bottom: -1.5%;
+    font-size: 25px;
+    font-weight: 700;
+    
+}
+#lg{
+    background-color: #8860d0;
+    color:black;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 5px;
+    
+    padding: 1.5%;
+    margin-right: 3%;
+    margin-top: 3%;
+}
+#js{
+    background-color: #84ceeb;
+    color:black;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 5px;
+    padding: 1.5%;
+}
+#buttons{
+    margin-left: 35%;
+    margin-top: 5%;
+}
+

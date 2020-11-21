@@ -1,0 +1,35 @@
+#mainbdy{
+    background-color: #41b3a3;
+}
+#bigone{
+    background-color: #f76c6c;
+    margin-top: 7%;
+    width: 650px;
+    margin-left: 24%;
+    padding-bottom: 3%;
+    border-radius: 5%;
+}
+#twobuttons{
+    margin-left: 28%;
+    padding-top: 5%;
+}
+#searchb{
+    width: 200px;
+    height: 25px;
+}
+#searchi{
+    height: 31px;
+}
+#display{
+    background-color: #465aa9;
+    border-radius: 5%;
+    padding-top: 1.5%;
+    padding-bottom: 1%;
+    margin-top: 4.5%;
+    width: 600px;
+    margin-left: 3.5%;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+}

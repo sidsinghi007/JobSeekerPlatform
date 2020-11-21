@@ -62,7 +62,7 @@ else
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="mystyle_recruiter.css">
+    <link rel="stylesheet" href="mystyle_recruiter_page.css">
 </head>
 <body>
 <div id=recruit>
@@ -79,19 +79,12 @@ else
                     <p id=em>Email id:<?=$_SESSION['email']?></p>
                     <p id=contno>Contact number=<?=$_SESSION['phone']?></p>
                 
-</div> 
+ 
         
-    <table>
-        <tr>
-            <td>
-                <p>
+    
                     <hr>
                     <div name="divj" id="los">
-                </p>
-            </td>
-        </tr>
-
-    </table>
+                
     
     <script>
         window.onload = function exampleFunction() { 
@@ -105,7 +98,7 @@ else
             var monojpack = <?php echo '["' .implode('", "', $arrayjpack) . '"]' ?>;
             for(i=0;i<sizee;i++)
                 {
-                    var div1=document.createElement('div1');
+                    var div1=document.createElement('div');
                     var pusernameh1=document.createElement('p');
                     var pusernameh2=document.createElement('p');
                     var pusernameh3=document.createElement('p');
@@ -113,7 +106,7 @@ else
                     var pusernameh5=document.createElement('p');
                     var pusernameh6=document.createElement('p');
                     var hrtag=document.createElement('hr');
-                    pusernameh1.textContent="JOB ID="+monojid[i]+"  JOB ROLE="+monojrole[i]+"   JOB POSITION="+monojpos[i];;
+                    pusernameh1.textContent="JOB ID=  "+monojid[i]+"    JOB ROLE=  "+monojrole[i]+"    JOB POSITION=  "+monojpos[i];;
                     pusernameh4.textContent="JOB DESCRIPTION="+monojdesc[i];
                     pusernameh5.textContent="JOB ELEGIBILITY="+monojeleg[i];
                     pusernameh6.textContent="JOB PACKAGE="+monojpack[i];
@@ -126,5 +119,6 @@ else
                 }
             } 
     </script>
+</div>
 </body>
 </html>
