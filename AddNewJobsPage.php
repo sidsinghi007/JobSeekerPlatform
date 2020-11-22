@@ -18,7 +18,7 @@ else
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <title>Addition of a New Job </title>
-        <link rel="stylesheet" type="text/css" href="style2.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
 </head>
     <body>
         <h1>Add a New Job</h1>
@@ -40,8 +40,8 @@ else
                     placeholder="Enter Job position" required><br><br>
 
             <label>Job Description</label><br>
-                    <textarea name="JobDescription" id="jdescription" rows="4" cols="50"
-                    placeholder="Enter Job Description" required></textarea><br><br>
+                    <input type="text" name="JobDescription" id="jdescription"
+                    placeholder="Enter Job Description" required><br><br>
 
             <label>Eligibility</label><br>
                     <input type="text" name="JobEligibility" id="jeligibility"

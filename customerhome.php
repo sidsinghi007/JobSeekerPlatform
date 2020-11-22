@@ -50,19 +50,22 @@ else
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="mystyle_customer_page.css">
+    <link rel="stylesheet" href="mystyle_customer.css">
 </head>
-<body id=bigg>
-
-<div id="bigdiv">
-                <div id="imdiv">
+<body>
+    <table>
+        <tr>
+            <td>
                 <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($_SESSION['image'] ).'" height="200" width="200"/>'; ?>
-                </div>
-                <div id=inf>
-                <p id="wel">Welcome <?=$_SESSION['name']?>!</p>
-                <p id="em"><?=$_SESSION['email']?></p>
-                <p id="ph"><?=$_SESSION['phone']?></p>
-                <div id=sk>
+            </td> 
+            <td>
+                <p>Welcome <?=$_SESSION['name']?>!</p>
+                <p><?=$_SESSION['email']?></p>
+                <p><?=$_SESSION['phone']?></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <form method="POST" action="">
                     <label id="LEDIT">ADD SKILL</label>
                     <input type="text" name="EDIT" id="Iedit">
@@ -95,7 +98,7 @@ else
                     }
                     ?>
                 </form>
-                <p id=skkk>Skills
+                <p>Skills
                     <div id="los"></div>
                 <script> 
                      window.onload = function exampleFunction() { 
@@ -111,12 +114,10 @@ else
                     } 
                 </script> 
                 </p>
-                </div>
-                </div>
-    <div id="buttons">      
-    <a href="logout.php" class="hhh" id="lg">Logout</a>
-    <a href="jobsearch.php" class="hhh" id="js">Search for Jobs</a>
-                </div>
-</div>
+            </td>
+        </tr>
+    </table>
+    <a href="logout.php" class="hhh">logout</a>
+    <a href="jobsearch.php" class="hhh">Search for jobs</a>
 </body>
 </html>

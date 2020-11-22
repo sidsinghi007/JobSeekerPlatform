@@ -68,17 +68,12 @@ else
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="mystyle_jobsearch.css">
 </head>
-<body id=mainbdy>
-    <div id=bigone>
-        <div id=twobuttons>
+<body>
     <form method="POST" action="">
-        <input type="text" name="searchbox" id="searchb" placeholder="Search for Job Position (Ex:SDE)">
+        <input type="text" name="searchbox" id="searchb">
         <input type="submit" name="searchsub" id="searchi">
     </form>
-</div>
-<div id=display>
     <div id="los"></div>
     <script>
         window.onload = function jojo()
@@ -101,7 +96,7 @@ else
                     var pusernameh5=document.createElement('p');
                     var pusernameh6=document.createElement('p');
                     var hrtag=document.createElement('hr');
-                    pusernameh1.textContent="JOB ID=  "+monojid[i]+"  JOB ROLE=  "+monojrole[i]+"   JOB POSITION=  "+monojpos[i];;
+                    pusernameh1.textContent="JOB ID="+monojid[i]+"  JOB ROLE="+monojrole[i]+"   JOB POSITION="+monojpos[i];;
                     pusernameh4.textContent="JOB DESCRIPTION="+monojdesc[i];
                     pusernameh5.textContent="JOB ELEGIBILITY="+monojeleg[i];
                     pusernameh6.textContent="JOB PACKAGE="+monojpack[i];
@@ -117,7 +112,5 @@ else
             }
         }
     </script>
-    </div>
-    </div>
 </body>
 </html>
