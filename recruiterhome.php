@@ -26,7 +26,7 @@ else
         $stmt->store_result();
     
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($remail,$jid,$jrole,$jposition,$jdesc,$jeleg,$jpackage);
+            $stmt->bind_result($remail,$rname,$jid,$jrole,$jposition,$jdesc,$jeleg,$jpackage);
             //$stmt->fetch();
             $cc=$stmt->num_rows;
             $soso=$cc;
@@ -77,7 +77,7 @@ else
                     <p id=welcome>Welcome <?=$_SESSION['name']?>!</p>
                     <p id=contactinfo>Contact info</p>
                     <p id=em>Email id:<?=$_SESSION['email']?></p>
-                    <p id=contno>Contact number=<?=$_SESSION['phone']?></p>
+                    <p id=contno>Contact number: <?=$_SESSION['phone']?></p>
                 
  
         

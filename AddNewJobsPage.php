@@ -70,6 +70,7 @@ else
                         // If there is an error with the connection, stop the script and display the error.
                         exit('Failed to connect to MySQL: ' . mysqli_connect_error());
                 }
+                $RNAME=$_SESSION['name'];
                 $REMAIL=$_SESSION['email'];
                 $JOBROLE=$_POST['Jobrole'];
                 $POSITION=$_POST['JobPosition'];
@@ -78,7 +79,7 @@ else
                 $JOBID = $_POST['JobId'];
                 $PACKAGE=$_POST['JobPackage'];
 
-                $insert = $con->query("INSERT into jobstable (remail, jid, jrole, jposition, jdesc, jeleg, jpackage ) VALUES ('$REMAIL', '$JOBID', '$JOBROLE', '$POSITION', '$DESCRIPTION', '$ELIGIBILITY', '$PACKAGE')");
+                $insert = $con->query("INSERT into jobstable (remail,rname, jid, jrole, jposition, jdesc, jeleg, jpackage ) VALUES ('$REMAIL','$RNAME', '$JOBID', '$JOBROLE', '$POSITION', '$DESCRIPTION', '$ELIGIBILITY', '$PACKAGE')");
                 if($insert)
 		{
 			echo "File uploaded successfully.";

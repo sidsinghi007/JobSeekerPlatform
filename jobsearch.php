@@ -31,11 +31,12 @@ else
                     $stmt->store_result();
                 
                     if ($stmt->num_rows > 0) {
-                        $stmt->bind_result($remail,$jid,$jrole,$jposition,$jdesc,$jeleg,$jpackage);
+                        $stmt->bind_result($remail,$rname,$jid,$jrole,$jposition,$jdesc,$jeleg,$jpackage);
                         //$stmt->fetch();
                         $cc=$stmt->num_rows;
                         $soso=$cc;
                         $i=0;
+                        $arrayrname=[];
                         $arrayjid=[];
                         $arrayjrole=[];
                         $arrayjpos=[];
@@ -46,6 +47,7 @@ else
                         while($cc>0)
                         {
                             $stmt->fetch();
+                            $arrayrname[$i]=$rname;
                             $arrayjid[$i]=$jid;
                             $arrayjrole[$i]=$jrole;
                             $arrayjpos[$i]=$jposition;
@@ -85,6 +87,7 @@ else
         {
             if(<?php echo $soso ?> >0){
             var sizee= <?php echo $soso ?>;
+            var monorname= <?php echo '["' .implode('", "', $arrayrname) . '"]' ?>;
             var monojid = <?php echo '["' .implode('", "', $arrayjid) . '"]' ?>;
             var monojrole = <?php echo '["' .implode('", "', $arrayjrole) . '"]' ?>;
             var monojpos = <?php echo '["' .implode('", "', $arrayjpos) . '"]' ?>;
@@ -105,6 +108,8 @@ else
                     pusernameh4.textContent="JOB DESCRIPTION="+monojdesc[i];
                     pusernameh5.textContent="JOB ELEGIBILITY="+monojeleg[i];
                     pusernameh6.textContent="JOB PACKAGE="+monojpack[i];
+                    pusernameh2.textContent="Company Name="+monorname[i];
+                    div1.appendChild(pusernameh2);
                     div1.appendChild(pusernameh1);
                     div1.appendChild(pusernameh4);
                     div1.appendChild(pusernameh5);
