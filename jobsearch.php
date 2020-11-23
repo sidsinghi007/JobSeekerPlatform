@@ -36,6 +36,7 @@ else
                         $cc=$stmt->num_rows;
                         $soso=$cc;
                         $i=0;
+                        $arrayemail=[];
                         $arrayrname=[];
                         $arrayjid=[];
                         $arrayjrole=[];
@@ -47,6 +48,7 @@ else
                         while($cc>0)
                         {
                             $stmt->fetch();
+                            $arrayremail[$i]=$remail;
                             $arrayrname[$i]=$rname;
                             $arrayjid[$i]=$jid;
                             $arrayjrole[$i]=$jrole;
@@ -87,6 +89,7 @@ else
         {
             if(<?php echo $soso ?> >0){
             var sizee= <?php echo $soso ?>;
+            var monoremail=<?php echo '["' .implode('", "', $arrayremail) . '"]' ?>;
             var monorname= <?php echo '["' .implode('", "', $arrayrname) . '"]' ?>;
             var monojid = <?php echo '["' .implode('", "', $arrayjid) . '"]' ?>;
             var monojrole = <?php echo '["' .implode('", "', $arrayjrole) . '"]' ?>;
@@ -109,7 +112,9 @@ else
                     pusernameh5.textContent="JOB ELEGIBILITY="+monojeleg[i];
                     pusernameh6.textContent="JOB PACKAGE="+monojpack[i];
                     pusernameh2.textContent="Company Name="+monorname[i];
+                    pusernameh3.textContent="Comapany Email= "+monoremail[i];
                     div1.appendChild(pusernameh2);
+                    div1.appendChild(pusernameh3);
                     div1.appendChild(pusernameh1);
                     div1.appendChild(pusernameh4);
                     div1.appendChild(pusernameh5);
