@@ -26,7 +26,7 @@ else
         $stmt->store_result();
     
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($remail,$rname,$jid,$jrole,$jposition,$jdesc,$jeleg,$jpackage);
+            $stmt->bind_result($remail,$rname,$jid,$jrole,$jposition,$jdesc,$jeleg,$jpackage,$cskills);
             //$stmt->fetch();
             $cc=$stmt->num_rows;
             $soso=$cc;
@@ -37,6 +37,7 @@ else
             $arrayjdesc=[];
             $arrayjeleg=[];
             $arrayjpack=[];
+            $arraycskills=[];
             while($cc>0)
             {
                 $stmt->fetch();
@@ -46,6 +47,7 @@ else
                 $arrayjdesc[$i]=$jdesc;
                 $arrayjeleg[$i]=$jeleg;
                 $arrayjpack[$i]=$jpackage;
+                $arraycskills[$i]=$cskills;
 
                 $cc=$cc-1;
                 $i=$i+1;
@@ -96,6 +98,7 @@ else
             var monojdesc= <?php echo '["' .implode('", "', $arrayjdesc) . '"]' ?>;
             var monojeleg = <?php echo '["' .implode('", "', $arrayjeleg) . '"]' ?>;
             var monojpack = <?php echo '["' .implode('", "', $arrayjpack) . '"]' ?>;
+            var monocskills = <?php echo '["' .implode('", "', $arraycskills) . '"]' ?>;
             for(i=0;i<sizee;i++)
                 {
                     var div1=document.createElement('div');
@@ -105,15 +108,18 @@ else
                     var pusernameh4=document.createElement('p');
                     var pusernameh5=document.createElement('p');
                     var pusernameh6=document.createElement('p');
+                    var pusernameh7=document.createElement('p');
                     var hrtag=document.createElement('hr');
                     pusernameh1.textContent="JOB ID=  "+monojid[i]+"    JOB ROLE=  "+monojrole[i]+"    JOB POSITION=  "+monojpos[i];;
                     pusernameh4.textContent="JOB DESCRIPTION="+monojdesc[i];
                     pusernameh5.textContent="JOB ELEGIBILITY="+monojeleg[i];
                     pusernameh6.textContent="JOB PACKAGE="+monojpack[i];
+                    pusernameh7.textContent="SKILLS="+monocskills[i];
                     div1.appendChild(pusernameh1);
                     div1.appendChild(pusernameh4);
                     div1.appendChild(pusernameh5);
                     div1.appendChild(pusernameh6);
+                    div1.appendChild(pusernameh7);
                     div1.appendChild(hrtag);
                     document.getElementById('los').appendChild(div1);
                 }
