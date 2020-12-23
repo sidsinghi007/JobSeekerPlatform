@@ -43,6 +43,10 @@ else
                     <textarea name="JobDescription" id="jdescription" rows="4" cols="50"
                     placeholder="Enter Job Description" required></textarea><br><br>
 
+            <label>Skills</label><br>
+                    <textarea name="Cskills" id="CSKILLS" rows="4" cols="50"
+                    placeholder="SKILLS" required></textarea><br><br>
+
             <label>Eligibility</label><br>
                     <input type="text" name="JobEligibility" id="jeligibility"
                     placeholder="Enter Job Eligibility" required><br><br>
@@ -78,8 +82,9 @@ else
                 $ELIGIBILITY=$_POST['JobEligibility'];
                 $JOBID = $_POST['JobId'];
                 $PACKAGE=$_POST['JobPackage'];
+                $CSKILLS=$_POST['Cskills'];
 
-                $insert = $con->query("INSERT into jobstable (remail,rname, jid, jrole, jposition, jdesc, jeleg, jpackage ) VALUES ('$REMAIL','$RNAME', '$JOBID', '$JOBROLE', '$POSITION', '$DESCRIPTION', '$ELIGIBILITY', '$PACKAGE')");
+                $insert = $con->query("INSERT into jobstable (remail,rname, jid, jrole, jposition, jdesc, jeleg, jpackage,cskills ) VALUES ('$REMAIL','$RNAME', '$JOBID', '$JOBROLE', '$POSITION', '$DESCRIPTION', '$ELIGIBILITY', '$PACKAGE','$CSKILLS')");
                 if($insert)
 		{
 			echo "File uploaded successfully.";

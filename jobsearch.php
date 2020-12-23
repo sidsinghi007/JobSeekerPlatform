@@ -23,19 +23,21 @@ else
                 // If there is an error with the connection, stop the script and display the error.
                 exit('Failed to connect to MySQL: ' . mysqli_connect_error());
                 }
-                if ($stmt = $con->prepare('SELECT * FROM jobstable WHERE jposition = ?')) {
+                $param="%{$_POST['searchbox']}%";
+                if ($stmt = $con->prepare('SELECT * FROM jobstable WHERE jposition = ? OR cskills LIKE ?')) {
                     // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-                    $stmt->bind_param('s', $_POST['searchbox']);
+                    $stmt->bind_param('ss', $_POST['searchbox'],$param);
                     $stmt->execute();
                     // Store the result so we can check if the account exists in the database.
                     $stmt->store_result();
                 
                     if ($stmt->num_rows > 0) {
-                        $stmt->bind_result($remail,$rname,$jid,$jrole,$jposition,$jdesc,$jeleg,$jpackage);
+                        $stmt->bind_result($remail,$rname,$jid,$jrole,$jposition,$jdesc,$jeleg,$jpackage,$cskills);
                         //$stmt->fetch();
                         $cc=$stmt->num_rows;
                         $soso=$cc;
                         $i=0;
+                        $arrayremail=[];
                         $arrayrname=[];
                         $arrayjid=[];
                         $arrayjrole=[];
@@ -43,10 +45,12 @@ else
                         $arrayjdesc=[];
                         $arrayjeleg=[];
                         $arrayjpack=[];
+                        $arrayckills=[];
                     
                         while($cc>0)
                         {
                             $stmt->fetch();
+                            $arrayremail[$i]=$remail;
                             $arrayrname[$i]=$rname;
                             $arrayjid[$i]=$jid;
                             $arrayjrole[$i]=$jrole;
@@ -54,6 +58,7 @@ else
                             $arrayjdesc[$i]=$jdesc;
                             $arrayjeleg[$i]=$jeleg;
                             $arrayjpack[$i]=$jpackage;
+                            $arrayckills[$i]=$cskills;
             
                             $cc=$cc-1;
                             $i=$i+1;
@@ -87,6 +92,7 @@ else
         {
             if(<?php echo $soso ?> >0){
             var sizee= <?php echo $soso ?>;
+            var monoremail= <?php echo '["' .implode('", "', $arrayremail) . '"]' ?>; 
             var monorname= <?php echo '["' .implode('", "', $arrayrname) . '"]' ?>;
             var monojid = <?php echo '["' .implode('", "', $arrayjid) . '"]' ?>;
             var monojrole = <?php echo '["' .implode('", "', $arrayjrole) . '"]' ?>;
@@ -109,7 +115,9 @@ else
                     pusernameh5.textContent="JOB ELEGIBILITY="+monojeleg[i];
                     pusernameh6.textContent="JOB PACKAGE="+monojpack[i];
                     pusernameh2.textContent="Company Name="+monorname[i];
+                    pusernameh3.textContent="Company email="+monoremail[i];
                     div1.appendChild(pusernameh2);
+                    div1.appendChild(pusernameh3);
                     div1.appendChild(pusernameh1);
                     div1.appendChild(pusernameh4);
                     div1.appendChild(pusernameh5);

@@ -49,9 +49,10 @@
                 type: "POST",
                 success:function(data)
                 {
-                    alert(data);
+                    
                     if(data=="Already Exists")
                     {
+                        alert(data);
                         $("#Iemail").val("");
                     }
                 },error:function(){}
